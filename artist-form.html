@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artist Registration Form</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/dropify@0.2.2/dist/css/dropify.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+    <link rel="stylesheet" href="/signature.css">
+    <style>
+        body {
+            background-image: url('/background.avif');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        .form-container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            margin: 2rem auto;
+            backdrop-filter: blur(10px);
+        }
+
+        .logo-container {
+            text-align: center;
+            margin-bottom: 2rem;
+            background: #171a48;
+        }
+
+        .logo-container img {
+            max-width: 150px;
+            height: auto;
+        }
+
+        .form-title {
+            color: #2c3e50;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .form-subtitle {
+            color: #171a48;
+            font-size: 1.1rem;
+            text-align: center;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            font-style: italic;
+            letter-spacing: 0.5px;
+        }
+
+        .form-subtitle:last-of-type {
+            color: #2c3e50;
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+            font-style: normal;
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
+        }
+
+        .form-control {
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+            padding: 0.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .form-control:focus {
+            box-shadow: 0 0 0 0.2rem rgba(44, 62, 80, 0.25);
+            border-color: #2c3e50;
+        }
+
+        .btn-submit {
+            background-color: #2c3e50;
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 8px;
+            border: none;
+            width: 100%;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-submit:hover {
+            background-color: #34495e;
+            transform: translateY(-2px);
+        }
+
+        .form-label {
+            font-weight: 500;
+            color: #2c3e50;
+        }
+
+        .form-section {
+            margin-bottom: 2rem;
+            display: none;
+        }
+
+        .form-section.active {
+            display: block;
+        }
+
+        .form-section-title {
+            color: #2c3e50;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #e0e0e0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .form-section-title i {
+            color: #171a48;
+        }
+
+        .checkbox-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .form-check {
+            margin-bottom: 0.5rem;
+        }
+
+        .form-check-input:checked {
+            background-color: #2c3e50;
+            border-color: #2c3e50 !important;
+        }
+
+        input[type="text"], input[type="checkbox"], textarea{
+            border-color: #2c3e50 !important;
+        }
+
+        .form-check-label {
+            color: #2c3e50;
+            font-weight: 500;
+        }
+
+        .navigation-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2rem;
+            gap: 1rem;
+        }
+
+        .btn-nav {
+            padding: 0.8rem 2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            flex: 1;
+        }
+
+        .btn-prev {
+            background-color: #0dcfb5;
+            color: white;
+            border: none;
+        }
+
+        .btn-prev:hover {
+            background-color: #0dcfb5;
+            transform: translateY(-2px);
+        }
+
+        .btn-nav:hover {
+            transform: translateY(-2px);
+        }
+
+        .progress-bar {
+            height: 4px;
+            background-color: #e0e0e0;
+            margin-bottom: 2rem;
+            border-radius: 2px;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background-color: #2c3e50;
+            border-radius: 2px;
+            transition: width 0.3s ease;
+        }
+
+        .btn-next {
+            background-color: #2c3e50;
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 8px;
+            border: none;
+        }
+
+        .btn-next:hover {
+            background-color: #34495e;
+            transform: translateY(-2px);
+        }
+        
+        .dropify-wrapper {
+            border: 2px solid #2c3e50;
+            border-radius: 8px;
+            padding: 0.5rem;
+        }
+        .dropify-wrapper .dropify-message p{
+            font-size: 1.3rem;
+            color: #2e4358;
+        }
+        .remove-image{
+            display: block;
+            float: right;
+        }
+        .declaration-text {
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            padding: 1.5rem;
+            border-left: 4px solid #0dcfb5;
+        }
+
+        .declaration-text label {
+            color: #2c3e50;
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .declaration-text ul {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 0;
+        }
+
+        .declaration-text ul li {
+            color: #2c3e50;
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            font-size: 0.95rem;
+        }
+
+        .declaration-text ul li:before {
+            content: "✓";
+            color: #0dcfb5;
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        .judging-criteria-text {
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            border-left: 4px solid #2c3e50;
+            color: #2c3e50;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .judging-criteria-text:first-line {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: #171a48;
+        }
+
+        .alert-danger{
+            color: #dc3545;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="form-container">
+                    <div class="logo-container">
+                        <img src="/logo.jpeg" alt="Artist Logo">
+                    </div>
+                        <h2 class="form-title">Artist Registration</h2>
+                        <p class="form-subtitle">Celebrating the Alchemy of Form and Vision</p>
+                        <p class="form-subtitle">Summer-Fall 2025 Grant Cycle</p>
+                    <div class="progress-bar">
+                        <div class="progress-bar-fill" style="width: 0%"></div>
+                    </div>
+                    <form id="artistForm">
+                        <div class="form-section active" data-step="1" data-next="2">
+                            <h3 class="form-section-title"><i class="fas fa-user-circle"></i> Personal Information</h3>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="" class="form-label">Full Name <span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control required" name="fullname">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="" class="form-label">Phone Number <span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control number required" name="phone_number">
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">Email Address <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control email required" name="email">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="phone" class="form-label">Mailing Address</label>
+                                    <input type="text" class="form-control" name="mailing_address">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="phone" class="form-label">Website Link</label>
+                                    <input type="text" class="form-control" name="website_url">
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="phone" class="form-label">Facebook Link</label>
+                                        <input type="text" class="form-control" name="facebook_url">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="phone" class="form-label">Instagram Link</label>
+                                        <input type="text" class="form-control" name="instagram_url">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="navigation-buttons">
+                                <button type="button" class="btn btn-nav btn-next" data-next="2">Next <i class="fas fa-arrow-right"></i></button>
+                            </div>
+                        </div>
+
+                        <div class="form-section" data-step="2" data-prev="1" data-next="3">
+                            <h3 class="form-section-title"><i class="fas fa-palette"></i> Artistic Practice</h3>
+                            <label for="artistic_practice" class="form-label">Primary Medium <small>(Check all that apply)</small></label>
+                            <div class="checkbox-group mb-3">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="primary_medium" value="Painting">
+                                    <label class="form-check-label" for="exhibitions">
+                                        Painting
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="primary_medium" value="Drawing">
+                                    <label class="form-check-label" for="commissions">
+                                        Drawing
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="primary_medium" value="Printmaking">
+                                    <label class="form-check-label" for="workshops">
+                                        Printmaking
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="primary_medium" value="Sculpture">
+                                    <label class="form-check-label" for="workshops">
+                                        Sculpture
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="primary_medium" value="Installation">
+                                    <label class="form-check-label" for="collaborations">
+                                        Installation
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="primary_medium" value="Mixed Media">
+                                    <label class="form-check-label" for="onlineSales">
+                                        Mixed Media
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="primary_medium" value="Ceramics">
+                                    <label class="form-check-label" for="galleryRepresentation">
+                                        Ceramics
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="primary_medium" value="Other">
+                                    <label class="form-check-label" for="galleryRepresentation">
+                                        Other
+                                    </label>
+                                </div>
+                                <div class="checkbox-error"></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 other-medium-div d-none">
+                                    <div class="mb-3">
+                                        <label for="phone" class="form-label">Other Medium <span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" name="other_mediums">
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="mb-3">
+                                        <label for="phone" class="form-label">Describe your artistic vision <small>200 - 500 words</small> <span class="text-danger">*</span></label>
+                                        <textarea class="form-control required" name="artistic_vision" rows="3"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="mb-3">
+                                        <label for="phone" class="form-label">Tell us how this grant will help you. <small>200 - 500 words</small> <span class="text-danger">*</span></label>
+                                        <textarea class="form-control required" name="how_this_grant_will_help_you" rows="3"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="mb-3">
+                                        <label for="phone" class="form-label">Brief Artist Bio <small>200 - 500 words</small> <span class="text-danger">*</span></label>
+                                        <textarea class="form-control required" name="brief_artist_bio" rows="3"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="mb-3">
+                                        <label for="phone" class="form-label">Share with us your professional Artist Statement <small>200 - 500 words</small> <span class="text-danger">*</span></label>
+                                        <textarea class="form-control required" name="professional_artist_statement" rows="3"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="navigation-buttons">
+                                <button type="button" class="btn btn-nav btn-prev" data-prev="1"><i class="fas fa-arrow-left"></i> Previous</button>
+                                <button type="button" class="btn btn-nav btn-next" data-next="3">Next <i class="fas fa-arrow-right"></i></button>
+                            </div>
+                        </div>
+
+                        <div class="form-section" data-step="3" data-prev="2" data-next="4">
+                            <h3 class="form-section-title"><i class="fas fa-file"></i> Portfolio Submission</h3>
+                            <div class="row images-upload-container">
+                                <div class="d-flex justify-content-between mb-3">
+                                    <label for="phone" class="form-label">Upload 5 - 10 images of your work <span class="text-danger">*</span></label>
+                                    <button type="button" class="btn btn-success add-more-images">+ Add More</button>
+                                </div>
+                                <div class="col-md-6 imgDiv">
+                                    <div class="mb-3">
+                                        <input type="file" class="form-control dropify required">
+                                        <div class="img">
+                                            <input type="hidden" name="File_Data" class="file_data">
+                                            <input type="hidden" name="File_Type" class="file_type">
+                                            <input type="hidden" name="File_Name" class="file_name">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 imgDiv">
+                                    <div class="mb-3">
+                                        <input type="file" class="form-control dropify required">
+                                        <div class="img">
+                                            <input type="hidden" name="File_Data" class="file_data">
+                                            <input type="hidden" name="File_Type" class="file_type">
+                                            <input type="hidden" name="File_Name" class="file_name">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 imgDiv">
+                                    <div class="mb-3">
+                                        <input type="file" class="form-control dropify required">
+                                        <div class="img">
+                                            <input type="hidden" name="File_Data" class="file_data">
+                                            <input type="hidden" name="File_Type" class="file_type">
+                                            <input type="hidden" name="File_Name" class="file_name">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 imgDiv">
+                                    <div class="mb-3">
+                                        <input type="file" class="form-control dropify required">
+                                        <div class="img">
+                                            <input type="hidden" name="File_Data" class="file_data">
+                                            <input type="hidden" name="File_Type" class="file_type">
+                                            <input type="hidden" name="File_Name" class="file_name">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 imgDiv">
+                                    <div class="mb-3">
+                                        <input type="file" class="form-control dropify required">
+                                        <div class="img">
+                                            <input type="hidden" name="File_Data" class="file_data">
+                                            <input type="hidden" name="File_Type" class="file_type">
+                                            <input type="hidden" name="File_Name" class="file_name">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6"></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="phone" class="form-label">Have you previously received a grant or award? <span class="text-danger">*</span></label>
+                                        <select class="form-control grant-award-select required" name="previously_received_grant_or_award">
+                                            <option value="" disabled selected>Select Option</option>
+                                            <option value="Yes">Yes</option>
+                                            <option value="No">No</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-12 previously-received-grant-or-award-description-div d-none">
+                                    <div class="mb-3">
+                                        <label for="phone" class="form-label">Please describe breifly about the grant or award you received <span class="text-danger">*</span></label>
+                                        <textarea class="form-control required" name="previously_received_grant_or_award_description" rows="3"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="phone" class="form-label">How did you hear about this grant? <span class="text-danger">*</span></label>
+                                        <select class="form-control hear-about-grant-select required" name="how_did_you_hear_about_this_grant">
+                                            <option value="" disabled selected>Select Option</option>
+                                            <option value="Social media">Social media</option>
+                                            <option value="Word of mouth">Word of mouth</option>
+                                            <option value="This Artists Dream website">This Artists Dream website</option>
+                                            <option value="Email newsletter">Email newsletter</option>
+                                            <option value="Other">Other</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-12 hear-about-grant-description-div d-none">
+                                    <div class="mb-3">
+                                        <label for="phone" class="form-label">From where did you hear about this grant? <span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control required" name="how_did_you_hear_about_this_grant_other">
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="mb-3">
+                                        <label for="phone" class="form-label">Anything else you'd like us to know?</label>
+                                        <textarea class="form-control required name="anything_else_you_would_like_us_to_know" rows="3"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="navigation-buttons">
+                                <button type="button" class="btn btn-nav btn-prev" data-prev="2"><i class="fas fa-arrow-left"></i> Previous</button>
+                                <button type="button" class="btn btn-nav btn-next" data-next="4">Next <i class="fas fa-arrow-right"></i></button>
+                            </div>
+                        </div>
+
+                        <div class="form-section" data-step="4" data-prev="3">
+                            <h3 class="form-section-title"><i class="fas fa-user-check"></i>Applicant Declaration</h3>
+                            <div class="declaration-text mb-3">
+                                <label for="phone" class="form-label"></label>By submitting this application, I confirm that:</label>
+                                <ul>
+                                    <li>I am a visual fine artist working in physical media</li>
+                                    <li>All submitted work is my own</li>
+                                    <li>I give permission for selected artwork and excerpts to be shared for promotional purposes if I am chosen as a winner</li>
+                                </ul>
+                            </div>
+                            <div class="row my-3">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="" class="form-label">Date</label>
+                                        <input type="text" class="form-control datepicker" name="date" readonly>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 mb-3 new_signature signature-pad name-1">
+                                    <h3 class="name-1-label">Signature</h3>
+                                    <div id="sig1" class="signature"></div>
+                                    <textarea id="signature_1" name="signature_1" class="signature-data d-none required"></textarea>
+                                    <button type="button" class="btn btn-primary signature-btn clear-signature">Clear</button>
+                                </div>
+                                <div class="signature-error"></div>
+                            </div>
+                            <p class="judging-criteria-text">🎯 Judging Criteria for This Artists Dream Fund
+                                Each application will be reviewed by a panel of qualified artists, curators, and cultural leaders selected by David F. Heatwole and the This Artists Dream team.
+                                </p>
+                            <div class="navigation-buttons">
+                                <button type="button" class="btn btn-nav btn-prev" data-prev="3"><i class="fas fa-arrow-left"></i> Previous</button>
+                                <button type="button" class="btn btn-submit" disabled> <i class="fas fa-ban"></i> Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dropify@0.2.2/dist/js/dropify.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+    
+    <script src="/signature.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('artistForm');
+            const sections = form.querySelectorAll('.form-section');
+            const progressBar = document.querySelector('.progress-bar-fill');
+            const totalSteps = sections.length;
+
+            function updateProgress(step) {
+                const progress = ((step - 1) / (totalSteps - 1)) * 100;
+                progressBar.style.width = `${progress}%`;
+            }
+
+            function showSection(step) {
+                sections.forEach(section => {
+                    section.classList.remove('active');
+                    if (section.dataset.step === step.toString()) {
+                        section.classList.add('active');
+                        // Handle signature pad when section becomes active
+                        if (section.querySelector('.signature')) {
+                            setTimeout(() => {
+                                // Destroy existing signature pad
+                                $('.signature').each(function() {
+                                    if ($(this).data('kbw-signature')) {
+                                        $(this).signature('destroy');
+                                    }
+                                });
+                                // Reinitialize signature pad
+                                $('.signature').each(function() {
+                                    $(this).signature({
+                                        syncField: "#" + $(this).closest('.signature-pad').find('.signature-data').attr('id'),
+                                        syncFormat: 'PNG',
+                                        color: '#2c3e50',
+                                        background: '#ffffff',
+                                        thickness: 2,
+                                        guideline: true,
+                                        guidelineColor: '#e0e0e0',
+                                        guidelineOffset: 50
+                                    });
+                                });
+                            }, 100);
+                        }
+                    }
+                });
+                updateProgress(parseInt(step));
+            }
+
+            // Handle next button clicks
+            document.querySelectorAll('.btn-next').forEach(button => {
+                button.addEventListener('click', function() {
+                    const currentSection = this.closest('.form-section');
+                    const nextStep = this.dataset.next;
+                    if(validate()){
+                        showSection(nextStep);
+                    }
+                });
+            });
+
+            // Handle previous button clicks
+            document.querySelectorAll('.btn-prev').forEach(button => {
+                button.addEventListener('click', function() {
+                    const prevStep = this.dataset.prev;
+                    showSection(prevStep);
+                });
+            });
+        });
+
+        function addDatePicker() {
+            var d = new Date();
+            var today = addZero(d.getDate()) + '/' + addZero(d.getMonth() + 1) + '/' + d.getFullYear();
+            $('.datepicker').val(today);
+            $('.datepicker').datepicker({
+                format: 'dd/mm/yyyy',
+                autoclose: true,
+                todayHighlight: true
+            });
+            $('.datepicker').datepicker('update');
+        }
+
+        function addZero(value) {
+            return value < 10 ? '0' + value : value;
+        }
+
+        $(document).ready(function() {
+            // Initialize signature pad
+            $('.signature').each(function() {
+                $(this).signature({
+                    syncField: "#" + $(this).closest('.signature-pad').find('.signature-data').attr('id'),
+                    syncFormat: 'PNG',
+                    color: '#2c3e50',
+                    background: '#ffffff',
+                    thickness: 2,
+                    guideline: true,
+                    guidelineColor: '#e0e0e0',
+                    guidelineOffset: 50
+                });
+            });
+
+            // Clear signature button
+            $('.clear-signature').click(function() {
+                const signatureId = $(this).closest('.signature-pad').find('.signature').attr('id');
+                $('#' + signatureId).signature('clear');
+                $('#' + signatureId).closest('.signature-pad').find('.signature-data').val('');
+            });
+
+            addDatePicker();
+            $('.dropify').dropify();
+        });
+
+        $(document).on('change', '.form-check-input', function() {
+            if ($(this).val() === 'Other' && $(this).is(':checked')) {
+                $('.other-medium-div').removeClass('d-none');
+            } else {
+                $('.other-medium-div').addClass('d-none');
+            }
+        });
+
+        $(document).on('click', '.add-more-images', function() {
+            $('.images-upload-container').append(`
+                <div class="col-md-6 imgDiv">
+                    <div class="mb-3">
+                        <button type="button" class="btn btn-danger remove-image">Remove</button>
+                        <input type="file" class="form-control dropify required">
+                        <div class="img">
+                            <input type="hidden" name="File_Data" class="file_data">
+                            <input type="hidden" name="File_Type" class="file_type">
+                            <input type="hidden" name="File_Name" class="file_name">
+                        </div>
+                    </div>
+                </div>`);
+            $('.dropify').dropify();
+        });
+
+        $(document).on('click', '.remove-image', function() {
+            $(this).closest('.col-md-6').remove();
+        });
+
+        $(document).on('change', '.grant-award-select', function() {
+            if ($(this).find('option:selected').val() === 'Yes') {
+                $('.previously-received-grant-or-award-description-div').removeClass('d-none');
+            } else {
+                $('.previously-received-grant-or-award-description-div').addClass('d-none');
+            }
+        });
+
+        $(document).on("click", ".dropify-clear", function () {
+            var action = $(this).closest(".imgDiv").find(".img");
+            action.find(".file_data").val("null");
+            action.find(".file_type").val("null");
+            action.find(".file_name").val("null");
+        });
+
+        $(document).on("change", ".dropify", function () {
+            var file = this.files[0];
+            var action = $(this).closest(".imgDiv").find(".img");
+            var fr = new FileReader();
+            if(typeof file.name !== undefined){
+            fr.fileName = file.name;
+            fr.onload = function (e) {
+                e.target.result;
+                action.find(".file_data").val(e.target.result.replace(/^.*,/, ""));
+                action.find(".file_type").val(e.target.result.match(/^.*(?=;)/)[0]);
+                action.find(".file_name").val(e.target.fileName);
+            };
+            fr.readAsDataURL(file);
+            }else{
+            action.find(".file_data").val("null");
+            action.find(".file_type").val("null");
+            action.find(".file_name").val("null");
+            }
+        });
+
+        function validate(){
+            var valid = true;
+            $('input, select').removeClass('danger')
+            $(".alert-danger").remove();
+            $(".required:visible").each(function () {
+                if ($(this).val() == "" || $(this).val() == null) {
+                    $(this).closest("div").append('<div class="alert-danger ps-1">This field is required</div>');
+                    valid = false;
+                }                
+            });
+
+            $(".email:visible").each(function(){
+                if($(this).val() != "" && $(this).val() != null){
+                    var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/
+                    email_check =  emailReg.test($(this).val())
+                    if(email_check == false)
+                    {
+                        $(this).closest("div").append('<div class="alert-danger ps-1">Invalid email format</div>');
+                        $(this).addClass('danger')
+                        valid = false;
+                    }
+                }
+            })
+            
+            var select 
+            $("select:visible").each(function () {
+                select = $(this).closest('div').find('select')
+                if (select.hasClass('required') && (select.find('option:selected').val() == "" || select.find('option:selected').val() == null)) {
+                    $(this).closest("div").find('.alert-danger').remove()
+                    $(this).closest("div").append('<div class="alert-danger ps-1">This field is required</div>');
+                    $(this).closest('div').find('.select2-selection').addClass('danger')
+                    valid = false;
+                }                
+            });
+
+            if($(".form-check-input:visible").length > 0 && $(".form-check-input:checked").length == 0){
+                $(".checkbox-error").append(`<div class="alert-danger ps-1">One option must be selected</div>`)
+                valid=false
+            }
+
+            if ($('.signature-data').val() == "" && $('.signature:visible').length > 0) {
+                $('.signature-error').append('<div class="alert-danger ps-1">Signature is required</div>');
+                valid = false;
+            }
+            
+            if (!valid) {
+                $("html, body").animate(
+                    {
+                        scrollTop: $(".alert-danger:first").offset().top-80,
+                    },
+                    100
+                );
+            }
+            return valid;
+        }
+
+        $(document).on('input','.number',function (e) {
+            this.value = this.value.replace(/[^0.00-9.99]/g, '').replace(/(\..*)\./g, '$1').replace(new RegExp("(^[\\d]{50})[\\d]", "g"), '$1');
+        });
+    </script>
+</body>
+</html> 
