@@ -362,7 +362,7 @@
                     <div class="title-logo">
                         <img src="./title-logo.jpg" alt="Artist Logo">
                     </div>
-                        <h2 class="form-title">Artist Registration</h2>
+                        <h2 class="form-title">Artist Grant Registration</h2>
                         <p class="form-subtitle">Celebrating the Alchemy of Form and Vision</p>
                         <p class="form-subtitle">Summer-Fall 2025 Grant Cycle</p>
                     <div class="progress-bar">
@@ -390,8 +390,8 @@
                                     <input type="text" class="form-control email required" name="email">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="phone" class="form-label">Mailing Address</label>
-                                    <input type="text" class="form-control" name="mailing_address">
+                                    <label for="phone" class="form-label">Mailing Address <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control required" name="mailing_address">
                                 </div>
                                 <div class="mb-3">
                                     <label for="phone" class="form-label">Website Link</label>
@@ -478,26 +478,26 @@
                                 </div>
                                 <div class="col-12">
                                     <div class="mb-3">
-                                        <label for="phone" class="form-label">Describe your artistic vision <small>200 - 500 words</small> <span class="text-danger">*</span></label>
-                                        <textarea class="form-control required max-500" name="artistic_vision" rows="3"></textarea>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="mb-3">
-                                        <label for="phone" class="form-label">Tell us how this grant will help you. <small>200 - 500 words</small> <span class="text-danger">*</span></label>
+                                        <label for="phone" class="form-label">Tell us how this grant will help you. <small>100 - 500 words</small> <span class="text-danger">*</span></label>
                                         <textarea class="form-control required max-500" name="how_this_grant_will_help_you" rows="3"></textarea>
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="mb-3">
-                                        <label for="phone" class="form-label">Brief Artist Bio <small>200 - 500 words</small> <span class="text-danger">*</span></label>
+                                        <label for="phone" class="form-label">Brief Artist Bio <small>100 - 500 words</small> <span class="text-danger">*</span></label>
                                         <textarea class="form-control required max-500" name="brief_artist_bio" rows="3"></textarea>
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="mb-3">
-                                        <label for="phone" class="form-label">Share with us your professional Artist Statement <small>200 - 500 words</small> <span class="text-danger">*</span></label>
+                                        <label for="phone" class="form-label">Share with us your professional Artist Statement <small>100 - 500 words</small> <span class="text-danger">*</span></label>
                                         <textarea class="form-control required max-500" name="professional_artist_statement" rows="3"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="mb-3">
+                                        <label for="phone" class="form-label">what's your artistic vision and dream? <small>100 - 500 words</small> <span class="text-danger">*</span></label>
+                                        <textarea class="form-control required max-500" name="artistic_vision" rows="3"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -870,8 +870,8 @@
             });
 
             $(".max-500:visible").each(function(){
-                if(($(this).val().length < 200 || $(this).val().length > 500) && $(this).val() != ""){
-                    $(this).closest("div").append('<div class="alert-danger ps-1">This field must be between 200 and 500 words</div>');
+                if(($(this).val().length < 100 || $(this).val().length > 500) && $(this).val() != ""){
+                    $(this).closest("div").append('<div class="alert-danger ps-1">This field must be between 100 and 500 words</div>');
                     valid = false;
                 }
             });
