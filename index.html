@@ -349,6 +349,73 @@
             padding-top: 1rem;
             border-top: 1px solid #dee2e6;
         }
+
+        .important-note-container {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            border-radius: 10px;
+            padding: 1.25rem;
+            margin: 1rem 0;
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+
+        .important-note-icon {
+            color: #856404;
+            font-size: 1.5rem;
+            padding-top: 0.25rem;
+        }
+
+        .important-note-content {
+            flex: 1;
+        }
+
+        .important-note-title {
+            color: #856404;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .important-note-text {
+            color: #856404;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .file-name-example {
+            background-color: #fff;
+            border: 1px solid #ffeeba;
+            border-radius: 6px;
+            padding: 0.75rem;
+            margin: 0.5rem 0;
+        }
+
+        .file-name-example code {
+            color: #2c3e50;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .example-text {
+            color: #856404;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        .example-code {
+            color: #2c3e50;
+            font-weight: 600;
+            font-family: monospace;
+        }
+
+        .important-note-subtext {
+            color: #856404;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            font-style: italic;
+        }
     </style>
 </head>
 <body>
@@ -513,6 +580,17 @@
                                 <div class="d-flex justify-content-between mb-3">
                                     <label for="phone" class="form-label">Upload (5-10) images of your work <small><b>(Allowed file types: jpg, jpeg, png)</b></small><span class="text-danger">*</span></label>
                                     <button type="button" class="btn btn-success add-more-images">+ Add More Images</button>
+                                </div>
+                                <div class="important-note-container">
+                                    <div class="important-note-icon">
+                                        <i class="fas fa-exclamation-circle"></i>
+                                    </div>
+                                    <div class="important-note-content">
+                                        <h4 class="important-note-title">Important</h4>
+                                        <p class="important-note-text">Save your image file names in this format:</p>
+                                        <p class="important-note-text">first initial_last name_image number</p>
+                                        <p class="important-note-text">Example: J_Smith_1.jpg</p>
+                                    </div>
                                 </div>
                                 <div class="col-md-6 imgDiv">
                                     <div class="mb-3">
