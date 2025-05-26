@@ -72,6 +72,38 @@
             text-transform: uppercase;
         }
 
+        .welcome-text {
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border-left: 4px solid #0dcfb5;
+            color: #2c3e50;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            position: relative;
+        }
+
+        .welcome-text strong {
+            color: #171a48;
+            font-weight: 600;
+        }
+
+        .welcome-text .deadline {
+            display: block;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #dee2e6;
+            font-weight: 600;
+            color: #171a48;
+        }
+
+        .welcome-text .announcement {
+            display: block;
+            color: #0dcfb5;
+            font-weight: 500;
+        }
+
         .form-control {
             border-radius: 8px;
             border: 1px solid #e0e0e0;
@@ -220,6 +252,72 @@
             font-size: 1.3rem;
             color: #2e4358;
         }
+
+        .dropify-progress {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.9);
+            display: none;
+            z-index: 1000;
+        }
+
+        .dropify-progress .progress {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            height: 6px;
+            background: #f1f1f1;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .dropify-progress .progress-bar {
+            height: 100%;
+            background: #2c3e50;
+            width: 0;
+            transition: width 0.3s ease;
+        }
+
+        .dropify-progress .progress-text {
+            position: absolute;
+            top: calc(50% + 20px);
+            left: 50%;
+            transform: translateX(-50%);
+            color: #2c3e50;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .dropify-success {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.9);
+            display: none;
+            z-index: 1000;
+            text-align: center;
+        }
+
+        .dropify-success i {
+            color: #0dcfb5;
+            font-size: 2rem;
+            margin-top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .dropify-success p {
+            color: #2c3e50;
+            font-size: 1rem;
+            margin-top: 10px;
+        }
+
         .remove-image{
             display: block;
             float: right;
@@ -311,6 +409,13 @@
             font-size: 1.1rem;
         }
 
+        .note-container h3 {
+            color: #2c3e50;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+
         .note-list {
             list-style: none;
             padding-left: 0;
@@ -351,8 +456,8 @@
         }
 
         .important-note-container {
-            background-color: #fff3cd;
-            border: 1px solid #ffeeba;
+            background-color: #25306f;
+            border: 1px solid #bacbff;
             border-radius: 10px;
             padding: 1.25rem;
             margin: 1rem 0;
@@ -362,7 +467,7 @@
         }
 
         .important-note-icon {
-            color: #856404;
+            color: white;
             font-size: 1.5rem;
             padding-top: 0.25rem;
         }
@@ -372,14 +477,14 @@
         }
 
         .important-note-title {
-            color: #856404;
+            color: white;
             font-size: 1.1rem;
             font-weight: 600;
             margin-bottom: 0.75rem;
         }
 
         .important-note-text {
-            color: #856404;
+            color: white;
             margin-bottom: 0.5rem;
             font-size: 0.95rem;
         }
@@ -398,12 +503,6 @@
             font-weight: 500;
         }
 
-        .example-text {
-            color: #856404;
-            font-size: 0.9rem;
-            margin-top: 0.5rem;
-        }
-
         .example-code {
             color: #2c3e50;
             font-weight: 600;
@@ -411,7 +510,7 @@
         }
 
         .important-note-subtext {
-            color: #856404;
+            color: white;
             font-size: 0.9rem;
             margin-top: 0.5rem;
             font-style: italic;
@@ -438,6 +537,11 @@
                     <form id="artistForm">
                         <input type="hidden" name="order_ref" class="ref-number">
                         <div class="form-section active" data-step="1" data-next="2">
+                            <p class="welcome-text">
+                                Welcome to the application for the inaugural <strong>This Artist's Dream Fund</strong>, offering unrestricted cash grants to visionary visual fine artists. One <strong>$1,000 grant</strong> and two <strong>$500 grants</strong> will be awarded to help artists pursue their creative calling.
+                                <span class="deadline">Deadline to apply: August 15, 2025</span>
+                                <span class="announcement">Winners announced: November 20, 2025</span>
+                            </p>
                             <h3 class="form-section-title"><i class="fas fa-user-circle"></i> Personal Information</h3>
                             <div class="row">
                                 <div class="col-md-6">
@@ -536,6 +640,7 @@
                                 </div>
                             </div>
                             <div class="checkbox-error"></div>
+                            <p class="note"><b>Note:Digital-only work is not eligible </b></p>
                             <div class="row">
                                 <div class="col-12 other-medium-div d-none">
                                     <div class="my-3">
@@ -588,8 +693,8 @@
                                     <div class="important-note-content">
                                         <h4 class="important-note-title">Important</h4>
                                         <p class="important-note-text">Save your image file names in this format:</p>
-                                        <p class="important-note-text">first initial_last name_image number</p>
-                                        <p class="important-note-text">Example: J_Smith_1.jpg</p>
+                                        <p class="important-note-text">last name_first initial_image number</p>
+                                        <p class="important-note-text">Example: Smith_J_1.jpg</p>
                                     </div>
                                 </div>
                                 <div class="col-md-6 imgDiv">
@@ -647,12 +752,12 @@
                             <div class="row">
                                 <div class="col-12">
                                     <div class="mb-3">
-                                        <label for="phone" class="form-label">Upload an image list <small><b>(Allowed file types: doc, docx, pdf)</b></small><span class="text-danger">*</span></label>
                                         <div class="note-container">
                                             <div class="note-icon">
                                                 <i class="fas fa-info-circle"></i>
                                             </div>
                                             <div class="note-content">
+                                                <h3>Upload an image list <small><b>(Allowed file types: doc, docx, pdf)</b></small><span class="text-danger">*</span></h3>
                                                 <p class="note-title">Important Instructions:</p>
                                                 <ul class="note-list">
                                                     <li>Include at the top of the page:
@@ -663,7 +768,7 @@
                                                             <li>Email address</li>
                                                         </ul>
                                                     </li>
-                                                    <li>List your images in numerical order (1-10)</li>
+                                                    <li>List your images in numerical order (1-10) to correspond with the numbers of your submitted JPGs.</li>
                                                     <li>For each piece, include:
                                                         <ul>
                                                             <li>Title</li>
@@ -673,7 +778,7 @@
                                                         </ul>
                                                     </li>
                                                     <li>Optional: Include a brief caption or context</li>
-                                                    <li class="note-warning">Save your file as either .pdf or word file. If we cannot open the file or don't receive it, you will be disqualified.</li>
+                                                    <li class="note-warning">Save your file as either .pdf or word file. Save your file type as last name Smith_Imagelist.file type (example: Smith_imagelist.pdf). If we cannot open the file or don't receive it, you will be disqualified.</li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -746,19 +851,19 @@
                                 </ul>
                             </div>
                             <div class="row my-3">
-                                <div class="col-md-6">
-                                    <div class="mb-3">
-                                        <label for="" class="form-label">Date</label>
-                                        <input type="text" class="form-control datepicker" name="date" readonly>
-                                    </div>
-                                </div>
                                 <div class="col-lg-12 mb-3 new_signature signature-pad name-1">
                                     <h3 class="name-1-label">Signature</h3>
                                     <div id="sig1" class="signature"></div>
                                     <textarea id="signature_1" name="signature_1" class="signature-data d-none required"></textarea>
                                     <button type="button" class="btn btn-primary signature-btn clear-signature">Clear</button>
                                 </div>
-                                <div class="signature-error"></div>
+                                <div class="signature-error mb-3"></div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="" class="form-label">Date</label>
+                                        <input type="text" class="form-control datepicker" name="date" readonly>
+                                    </div>
+                                </div>
                             </div>
                             <p class="judging-criteria-text">🎯 Judging Criteria for This Artists Dream Fund
                                 Each application will be reviewed by a panel of qualified artists, curators, and cultural leaders selected by David F. Heatwole and the This Artists Dream team.
@@ -782,7 +887,7 @@
     <script src="https://cdn.jsdelivr.net/npm/dropify@0.2.2/dist/js/dropify.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="/signature.js"></script>
+    <script src="./signature.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const form = document.getElementById('artistForm');
@@ -859,7 +964,30 @@
 
         $(document).ready(function() {
             addDatePicker();
-            $('.dropify').dropify();
+            $('.dropify').dropify({
+                messages: {
+                    'default': 'Drag and drop a file here or click',
+                    'replace': 'Drag and drop or click to replace',
+                    'remove':  'Remove',
+                    'error':   'Ooops, something wrong happended.'
+                }
+            });
+
+            // Add progress and success elements to each dropify wrapper
+            $('.dropify-wrapper').each(function() {
+                $(this).append(`
+                    <div class="dropify-progress">
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" style="width: 0%"></div>
+                        </div>
+                        <div class="progress-text">Uploading... 0%</div>
+                    </div>
+                    <div class="dropify-success">
+                        <i class="fas fa-check-circle"></i>
+                        <p>File uploaded successfully!</p>
+                    </div>
+                `);
+            });
         });
 
         $(document).on('change', '.form-check-input', function() {
@@ -919,20 +1047,46 @@
         $(document).on("change", ".dropify", function () {
             var file = this.files[0];
             var action = $(this).closest(".imgDiv").find(".img");
-            var fr = new FileReader();
+            var wrapper = $(this).closest('.dropify-wrapper');
+            var progress = wrapper.find('.dropify-progress');
+            var progressBar = progress.find('.progress-bar');
+            var progressText = progress.find('.progress-text');
+            var success = wrapper.find('.dropify-success');
+            
             if(typeof file.name !== undefined){
-            fr.fileName = file.name;
-            fr.onload = function (e) {
-                e.target.result;
-                action.find(".file_data").val(e.target.result.replace(/^.*,/, ""));
-                action.find(".file_type").val(e.target.result.match(/^.*(?=;)/)[0]);
-                action.find(".file_name").val(e.target.fileName);
-            };
-            fr.readAsDataURL(file);
-            }else{
-            action.find(".file_data").val("null");
-            action.find(".file_type").val("null");
-            action.find(".file_name").val("null");
+                // Show progress
+                progress.show();
+                
+                // Simulate upload progress
+                var width = 0;
+                var interval = setInterval(function() {
+                    if (width >= 100) {
+                        clearInterval(interval);
+                        progress.hide();
+                        success.show();
+                        setTimeout(function() {
+                            success.fadeOut();
+                        }, 2000);
+                    } else {
+                        width++;
+                        progressBar.css('width', width + '%');
+                        progressText.text('Uploading... ' + width + '%');
+                    }
+                }, 20);
+
+                var fr = new FileReader();
+                fr.fileName = file.name;
+                fr.onload = function (e) {
+                    e.target.result;
+                    action.find(".file_data").val(e.target.result.replace(/^.*,/, ""));
+                    action.find(".file_type").val(e.target.result.match(/^.*(?=;)/)[0]);
+                    action.find(".file_name").val(e.target.fileName);
+                };
+                fr.readAsDataURL(file);
+            } else {
+                action.find(".file_data").val("null");
+                action.find(".file_type").val("null");
+                action.find(".file_name").val("null");
             }
         });
 
