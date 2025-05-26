@@ -75,7 +75,7 @@
         .welcome-text {
             background-color: #f8f9fa;
             border-radius: 10px;
-            padding: 1.5rem;
+            padding: 2rem;
             margin-bottom: 2rem;
             border-left: 4px solid #0dcfb5;
             color: #2c3e50;
@@ -84,24 +84,80 @@
             position: relative;
         }
 
-        .welcome-text strong {
+        .welcome-text .welcome-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .welcome-text .welcome-header i {
+            font-size: 2rem;
+            color: #0dcfb5;
+        }
+
+        .welcome-text .welcome-header h2 {
             color: #171a48;
+            font-size: 1.5rem;
             font-weight: 600;
+            margin: 0;
+        }
+
+        .welcome-text .welcome-content {
+            margin-bottom: 1.5rem;
+        }
+
+        .welcome-text .welcome-content p {
+            margin-bottom: 1rem;
+        }
+
+        .welcome-text .welcome-content .artists-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        .welcome-text .welcome-content .artists-list span {
+            background: #e9ecef;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: #2c3e50;
+        }
+
+        .welcome-text .welcome-footer {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #dee2e6;
+        }
+
+        .welcome-text .deadline, 
+        .welcome-text .announcement {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 500;
         }
 
         .welcome-text .deadline {
-            display: block;
-            margin-top: 1rem;
-            padding-top: 1rem;
-            border-top: 1px solid #dee2e6;
-            font-weight: 600;
             color: #171a48;
         }
 
         .welcome-text .announcement {
-            display: block;
             color: #0dcfb5;
-            font-weight: 500;
+        }
+
+        .welcome-text .deadline i,
+        .welcome-text .announcement i {
+            font-size: 1.2rem;
+        }
+
+        .welcome-text strong {
+            color: #171a48;
+            font-weight: 600;
         }
 
         .form-control {
@@ -537,11 +593,34 @@
                     <form id="artistForm">
                         <input type="hidden" name="order_ref" class="ref-number">
                         <div class="form-section active" data-step="1" data-next="2">
-                            <p class="welcome-text">
-                                Welcome to the application for the inaugural <strong>This Artist's Dream Fund</strong>, offering unrestricted cash grants to visionary visual fine artists. One <strong>$1,000 grant</strong> and two <strong>$500 grants</strong> will be awarded to help artists pursue their creative calling.
-                                <span class="deadline">Deadline to apply: August 15, 2025</span>
-                                <span class="announcement">Winners announced: November 20, 2025</span>
-                            </p>
+                            <div class="welcome-text">
+                                <div class="welcome-header">
+                                    <i class="fas fa-palette"></i>
+                                    <h2>Welcome to the Matter of Art Grant</h2>
+                                </div>
+                                <div class="welcome-content">
+                                    <p>Welcome to the application for the inaugural <strong>Matter of Art Grant</strong>, the first award presented through the Matter of Art Fund, a creative initiative by This Artists Dream.</p>
+                                    <p>This grant offers unrestricted cash support to fine artists who work in physical media:</p>
+                                    <div class="artists-list">
+                                        <span><i class="fas fa-paint-brush"></i> Painters</span>
+                                        <span><i class="fas fa-mountain"></i> Sculptors</span>
+                                        <span><i class="fas fa-print"></i> Printmakers</span>
+                                        <span><i class="fas fa-vase"></i> Ceramicists</span>
+                                        <span><i class="fas fa-lightbulb"></i> Creative Explorers</span>
+                                    </div>
+                                    <p>We're honored to learn more about you and your work.</p>
+                                </div>
+                                <div class="welcome-footer">
+                                    <span class="deadline">
+                                        <i class="far fa-clock"></i>
+                                        Deadline to apply: August 15, 2025
+                                    </span>
+                                    <span class="announcement">
+                                        <i class="fas fa-trophy"></i>
+                                        Winners announced: November 20, 2025
+                                    </span>
+                                </div>
+                            </div>
                             <h3 class="form-section-title"><i class="fas fa-user-circle"></i> Personal Information</h3>
                             <div class="row">
                                 <div class="col-md-6">
