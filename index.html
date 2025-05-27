@@ -1188,12 +1188,12 @@
                 }                
             });
 
-            // $(".max-500:visible").each(function(){
-            //     if(($(this).val().length < 100 || $(this).val().length > 500) && $(this).val() != ""){
-            //         $(this).closest("div").append('<div class="alert-danger ps-1">This field must be between 100 and 500 words</div>');
-            //         valid = false;
-            //     }
-            // });
+            $(".max-500:visible").each(function(){
+                if(($(this).val().length < 100 || $(this).val().length > 500) && $(this).val() != ""){
+                    $(this).closest("div").append('<div class="alert-danger ps-1">This field must be between 100 and 500 words</div>');
+                    valid = false;
+                }
+            });
 
             $(".email:visible").each(function(){
                 if($(this).val() != "" && $(this).val() != null){
