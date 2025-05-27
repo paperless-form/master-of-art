@@ -1189,10 +1189,12 @@
             });
 
             $(".max-500:visible").each(function(){
-                const wordCount = $(this).val().trim().split(/\s+/).filter(word => word.length > 0).length;
-                if(wordCount < 100 || wordCount > 500){
-                    $(this).closest("div").append('<div class="alert-danger ps-1">This field must be between 100 and 500 words</div>');
-                    valid = false;
+                if($(this).val() != "" && $(this).val() != null){
+                    const wordCount = $(this).val().trim().split(/\s+/).filter(word => word.length > 0).length;
+                    if(wordCount < 100 || wordCount > 500){
+                        $(this).closest("div").append('<div class="alert-danger ps-1">This field must be between 100 and 500 words</div>');
+                        valid = false;
+                    }
                 }
             });
 
